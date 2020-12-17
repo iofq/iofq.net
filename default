@@ -1,0 +1,152 @@
+## Version 2020/03/05 - Changelog: https://github.com/linuxserver/docker-letsencrypt/commits/master/root/defaults/default
+
+# redirect traffic to https
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+	server_name _;
+	return 301 https://$host$request_uri;
+}
+
+# main server block
+server {
+	listen 443 ssl http2;
+	listen [::]:443 ssl http2;
+
+	root /config/www;
+	index index.html;
+
+	server_name iofq.net, www.iofq.net;
+
+	include /config/nginx/ssl.conf;
+
+	client_max_body_size 0;
+
+	location / {
+		try_files $uri $uri/ /index.html /index.php?$args =404;
+	}
+
+	location /resume/ {
+	  auth_basic            "\n\nUser: resume \nPass: resume";
+	  auth_basic_user_file  /config/nginx/.htpasswd_resume;
+	}
+
+}
+
+server {
+	listen 443 ssl http2;
+	listen [::]:443 ssl http2;
+
+	root /config/www;
+	index index.html index.htm index.php;
+
+	server_name git.iofq.net;
+
+	include /config/nginx/ssl.conf;
+
+	client_max_body_size 0;
+
+	location / {
+		include /config/nginx/proxy.conf;
+		#proxy_pass http://192.168.3.11:9000;
+		return 301 https://github.com/iofq;
+	}
+}
+
+server {
+	listen 443 ssl http2;
+	
+	server_name files.iofq.net;
+	include /config/nginx/ssl.conf;
+
+	autoindex on;
+	autoindex_exact_size off;
+	autoindex_localtime on;
+	
+	location / {
+		auth_basic  "Login";
+		auth_basic_user_file /config/nginx/.htpasswd;
+		root /files;
+	}
+}
+
+server {
+	listen 443 ssl http2;
+	
+	server_name gpg.iofq.net;
+	include /config/nginx/ssl.conf;
+
+	location / {
+		root /config/www;
+		index gpg.html;
+	}
+}
+
+server {
+	listen 443 ssl http2;
+	
+	server_name top.iofq.net;
+	include /config/nginx/ssl.conf;
+
+	location / {
+		root /config/www;
+		index top.html;
+	}
+}
+
+server {
+	listen 443 ssl http2;
+	listen [::]:443 ssl http2;
+
+	root /config/www;
+	index index.html index.htm index.php;
+
+	server_name ipfs.iofq.net;
+
+	include /config/nginx/ssl.conf;
+
+	client_max_body_size 0;
+
+	location / {
+		include /config/nginx/proxy.conf;
+		proxy_pass http://10.1.1.2:8080;
+	}
+}
+server {
+	listen 443 ssl http2;
+	listen [::]:443 ssl http2;
+
+	root /config/www;
+	index index.html index.htm index.php;
+
+	server_name swap.iofq.net;
+
+	include /config/nginx/ssl.conf;
+
+	client_max_body_size 0;
+
+	location / {
+		include /config/nginx/proxy.conf;
+		return 301 https://ipfs.iofq.net/ipfs/Qmc3j4EZYVG69JTA11j5CeUAvjqWokNEHxb5TgKzJSiQbQ/#/swap/;
+	}
+}
+
+server {
+	listen 443 ssl http2;
+	listen [::]:443 ssl http2;
+
+	server_name s.iofq.net;
+
+	root /config/www;
+	index index.html index.htm index.php;
+	include /config/nginx/ssl.conf;
+
+	client_max_body_size 0;
+
+	location / {
+		include /config/nginx/proxy.conf;
+		proxy_pass http://10.1.1.2:5000;
+	}
+}
+# enable proxy cache for auth
+proxy_cache_path cache/ keys_zone=auth_cache:10m;

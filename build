@@ -1,0 +1,28 @@
+#!/bin/bash
+docker rm -f letsencrypt
+
+docker run -d \
+  --name=letsencrypt \
+  --cap-add=NET_ADMIN \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=America/Chicago \
+  -e URL=iofq.net \
+  -e SUBDOMAINS=www,git,files,gpg,top,s \
+  -e VALIDATION=dns \
+  -e DNSPLUGIN=cloudflare \
+  -e EMAIL=cjriddz@protonmail.com \
+  -e DHLEVEL=2048 `#optional` \
+  -e ONLY_SUBDOMAINS=false `#optional` \
+  -p 443:443 \
+  -p 80:80  \
+  -v /mnt/nfs/docker/letsencrypt/config:/config:z \
+  -v /mnt/nfs/downloads:/files \
+  --restart always \
+  linuxserver/swag
+
+cp /mnt/nfs/docker/letsencrypt/default /mnt/nfs/docker/letsencrypt/config/nginx/site-confs/default
+
+killall status_update; ./bin/status_update &
+killall top_update; ./bin/top_update &
+killall speed_update; ./bin/speed_update &
