@@ -1,0 +1,6 @@
+#!/bin/bash
+SLEEP=600
+while true; do
+	speedtest | grep -e "Download: " -e "Upload: " > ./.speedtest.tmp
+	sleep $SLEEP
+done
