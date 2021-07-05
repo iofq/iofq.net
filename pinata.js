@@ -24,7 +24,7 @@ recursive.readdirr(src, function (err, dirs, files) {
     data.append('pinataMetadata',JSON.stringify({
             name: 'iofq.net',
             keyvalues: {
-            date: Date.now()
+                date: Date.now()
             }
         }));
 
