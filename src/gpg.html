@@ -1,91 +1,31 @@
 <!DOCTYPE html>
 <html>
-  <meta http-equiv="refresh" content="30">
-  <head>
-  <style>
-	body {
-			font-family: Helvetica, Arial, sans-serif;
-			font-size: 13px;
-
-      background: #000000;
-      color: #EEEEEE;
-			word-wrap: break-word;
-
-			max-width: 90%;
-			min-height: 100%;
-			margin:2% auto;
-	}
-  hr {
-  animation: slidein 1s;
-  color: #1ABC9C;
-
-  }
-  :root {
-    --mainColor: #1ABC9C;
-  }
-  a {
-     background:
-     linear-gradient(
-       to bottom, var(--mainColor) 0%,
-       var(--mainColor) 100%
-     );
-    background-position: 0 100%;
-    background-repeat: repeat-x;
-    background-size: 0px 0px;
-    color: #1ABC9C;	
-    text-size: 15px;
-    text-decoration: none;
-    transition: background-size .3s;
-    font-weight: bold;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-right: 10px;
-    padding-left: 10px;
-  }
-  a:hover {
-	color: #000;
-        background-size: 8px 90px;
-  }
-  header {
-     text-align: left;
-		 letter-spacing: 3px;
-     font-weight: 150;
-  }
-  h1 {
-     color: #000000;
-  }
-  .rice {
-  	font-weight: 100; 
-	border-style: solid;
-  color: #EEEEEE;
-	border-width: 1px;
-	border-color: #404044;
-	padding-right: 20px;
-	padding-left: 20px;
-	  margin-top: 4px;
-  }
-
-  @keyframes slidein {
-  from {
-  margin-left: 100%;
-  width: 300%; 
-  }
-  
-  to {
-  margin-left: 0%;
-  width: 100%;
-  }
-}
-  </style>
-  </head>
-  <body>
-	<header>
-	<h1 style="color:#EEEEEE;text-align:center;text-decoration: underline; font-weight: 150;">iofq.net</h1>
-	<a href="https://iofq.net">status</a> | <a href="https://git.iofq.net">github</a> | <a href="mailto: cjriddz@protonmail.com">email</a> | <a href="https://gpg.iofq.net">PGP</a> | <a href="https://s.iofq.net">url shortener</a> | <a href="https://top.iofq.net">top</a> | <a href="https://swap.iofq.net">uniswap</a>
-	</header>
-  <div class="rice">
-
-		<pre>
+    <head>
+        <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <title>iofq.net</title>
+        <script>function copy() {
+                navigator.clipboard.writeText(document.getElementById("gpg").innerHTML);
+                document.getElementById("copy_btn").innerText = "copied!";
+            }</script>
+    </head>
+    <body>
+    <header>
+        <h1><a href="https://iofq.net">  iofq.net  </a></h1>
+        <div class="navmenu" tag>
+            <button id="nav-button">#</button>
+            <div class="navbar">
+                <a href="https://git.iofq.net">github</a>
+                <a href="mailto: cjriddz@protonmail.com">email</a>
+                <a href="gpg.html">PGP</a>
+                <a href="https://swap.iofq.net">uniswap</a>
+                <a href="https://ipfs.iofq.net/ipfs/">ipfs gw</a>
+            </div>
+        </div>
+    </header>
+    <br>
+    <div class="rice">
+        <pre id="gpg">
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 
 mQINBF4Cg0MBEADM/I1ZJOi3l7s2ZYxKze/ZsbiYjnfTBVFn3ymmBoVeBalHmktq
@@ -138,16 +78,11 @@ E6ePxazY29n7mH4X48VVhClOdY6IsM+VLVV4EeDF5L1VvJ52ak+HAfxZy+QAEoZk
 1HhSjy+oXQHnN7eYPu0sFHavfaqTWgQ=
 =Bpb7
 -----END PGP PUBLIC KEY BLOCK-----
-		</pre>
-  </div>
-  </body>
-  </html>
-  <head>
-	<footer>
-	<p style="font-size: 16px;font-weight: 150; color: #404044"> [powered by nginx and ansi2html] </p>
-	</footer>
-  </html>
-	<title>
-		gpg cjriddz@protonmail.com
-	</title>
+        </pre>
+    <button id="copy_btn" onclick="copy()">copy to clipboard</button>
+    </div>
+    <footer>
+        <p>[made with pure html/css3 and hosted on ipfs <3]</p>
+    </footer>
+    </body>
 </html>

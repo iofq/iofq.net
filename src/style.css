@@ -1,0 +1,118 @@
+:root {
+    --mainColor: #219279;
+    --bgColor: #00000F;
+    --fgColor: #BFB0B0;
+}
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    font-family: Courier, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    word-wrap: break-word;
+    background-color: var(--bgColor);
+    color: var(--fgColor);
+    max-width: 70%;
+    margin:2% auto;
+}
+h1 {
+    text-align: center;
+    text-decoration: underline;
+    font-weight: 100;
+    letter-spacing: 2px;
+    font-size: 20px;
+    white-space: pre;
+}
+a {
+    color: var(--mainColor);	
+    text-decoration: none;
+}
+h1 a {
+    color: var(--fgColor);	
+}
+pre {
+    font-size: initial;
+    font-weight: initial;
+}
+footer {
+    color: #606066;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-right: 10%;
+}
+button {
+    font-size: 20px;
+    color: var(--fgColor);	
+    border: none;
+}
+#copy_btn {
+    color: var(--bgColor);
+}
+#nav-button {
+    background-color: var(--bgColor);
+    height:30px;
+    width:30px;
+}
+#nav-button:hover {
+    background-color: var(--mainColor);
+    color: var(--bgColor);
+    transition: background-color .5s;
+}
+#nav-button:focus {
+    outline: none;
+    border: none;
+    background-color: var(--mainColor);
+    color: var(--bgColor);
+}
+#nav-button ~ .navbar:focus-within,
+#nav-button:focus ~ .navbar {
+    background-color: var(--bgColor);
+    border: 1px solid var(--fgColor);
+    opacity: 1;
+}
+.navmenu .navbar {
+    border: 1px solid var(--fgColor);
+    padding: 5px 10px 5px 10px;
+    position: absolute;
+    opacity: 0;
+    transition: opacity .7s;
+}
+.navbar a {
+    display: block;
+    background:
+    linear-gradient(
+    to bottom, var(--mainColor) 0%,
+    var(--mainColor) 100%
+    );
+    transition: background-size .3s;
+    background-position: 0 100%;
+    background-repeat: repeat-x;
+    background-size: 0px 0px;
+    font-weight: bold;
+    font-size: 13px;
+    text-align: center;
+    letter-spacing: 3px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    min-width: 150px;
+}
+.navbar a:hover {
+    color: var(--bgColor);
+    background-size: 8px 90px;
+}
+.rice section {
+	padding: 10px 20px 10px 20px;
+    margin-bottom: 30px;
+	border-style: solid;
+	border-width: 0px 1px 0px 1px;
+	border-color: var(--fgColor);
+}
+@media only screen and (max-width: 700px) {
+    body {
+        max-width: 85%;
+    }
+}

@@ -1,0 +1,22 @@
+name: pinata_cloud
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  push_ipfs:
+    runs-on: ubuntu-latest
+  steps:
+    - uses: actions/checkout@v2
+    - shell: bash
+      env:
+        PINATA_CLOUD_TOKEN: ${{ secrets.PINATA_CLOUD_TOKEN }}
+        CLOUDFLARE_KEY: ${{ secrets.CLOUDFLARE_KEY }}
+        CLOUDFLARE_EMAIL: ${{ secrets.CLOUDFLARE_EMAIL }}
+        CLOUDFLARE_ZONE: ${{ secrets.CLOUDFLARE_ZONE }}
+        CLOUDFLARE_RECORD: ${{ secrets.CLOUDFLARE_RECORD }}
+      run: |
+        npm install axios fs form-data recursive-fs base-path-converter
+        node pinata.js
