@@ -21,5 +21,6 @@ jobs:
           CLOUDFLARE_ZONE: ${{ secrets.CLOUDFLARE_ZONE }}
           CLOUDFLARE_RECORD: ${{ secrets.CLOUDFLARE_RECORD }}
         run: |
+          echo $PINATA_CLOUD_TOKEN
           npm install axios fs form-data recursive-fs base-path-converter
           node pinata.js
