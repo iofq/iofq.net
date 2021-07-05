@@ -36,7 +36,7 @@ recursive.readdirr(src, function (err, dirs, files) {
             }
         }) .then(function (response) {
         const pinata_hash = response.data['IpfsHash'];
-        const headers = {
+        headers = {
             'X-Auth-Key' : cloudflare_key,
             'X-Auth-Email' : cloudflare_email,
             'Content-Type' : "application/json"
