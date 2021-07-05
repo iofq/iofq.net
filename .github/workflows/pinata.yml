@@ -16,9 +16,10 @@ jobs:
       CLOUDFLARE_ZONE: ${{ secrets.CLOUDFLARE_ZONE }}
       CLOUDFLARE_RECORD: ${{ secrets.CLOUDFLARE_RECORD }}
     steps:
-      - name: push src to pinata and hash to cloudflare APIs
+      - name: checkout code
         uses: actions/checkout@v2
-        shell: bash
+
+      - name: push src to pinata and hash to cloudflare APIs
         run: |
           npm install axios fs form-data recursive-fs base-path-converter
           node pinata.js
