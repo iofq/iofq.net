@@ -9,16 +9,16 @@ on:
 jobs:
   push_ipfs:
     runs-on: ubuntu-latest
-  steps:
-    - uses: actions/checkout@v2
-    - shell: bash
-      env:
-        PINATA_CLOUD_TOKEN: ${{ secrets.PINATA_CLOUD_TOKEN }}
-        CLOUDFLARE_KEY: ${{ secrets.CLOUDFLARE_KEY }}
-        CLOUDFLARE_EMAIL: ${{ secrets.CLOUDFLARE_EMAIL }}
-        CLOUDFLARE_ZONE: ${{ secrets.CLOUDFLARE_ZONE }}
-        CLOUDFLARE_RECORD: ${{ secrets.CLOUDFLARE_RECORD }}
-    - name: run script
-      run: |
-        npm install axios fs form-data recursive-fs base-path-converter
-        node pinata.js
+    env:
+      PINATA_CLOUD_TOKEN: ${{ secrets.PINATA_CLOUD_TOKEN }}
+      CLOUDFLARE_KEY: ${{ secrets.CLOUDFLARE_KEY }}
+      CLOUDFLARE_EMAIL: ${{ secrets.CLOUDFLARE_EMAIL }}
+      CLOUDFLARE_ZONE: ${{ secrets.CLOUDFLARE_ZONE }}
+      CLOUDFLARE_RECORD: ${{ secrets.CLOUDFLARE_RECORD }}
+    steps:
+      - uses: actions/checkout@v2
+      - shell: bash
+      - name: run script
+        run: |
+          npm install axios fs form-data recursive-fs base-path-converter
+          node pinata.js
