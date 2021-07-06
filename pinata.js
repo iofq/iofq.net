@@ -7,11 +7,11 @@ const basePathConverter = require('base-path-converter');
 const src = './src';
 const pinata_url = 'https://api.pinata.cloud/pinning/pinFileToIPFS';
 const cloudflare_url = 'https://api.cloudflare.com/client/v4';
-const pinata_token = process.env.PINATA_CLOUD_TOKEN;
-const cloudflare_key = process.env.CLOUDFLARE_KEY;
-const cloudflare_email = process.env.CLOUDFLARE_EMAIL;
-const cloudflare_zone = process.env.CLOUDFLARE_ZONE;
-const cloudflare_record = process.env.CLOUDFLARE_RECORD;
+const pinata_token = process.env.PINATA_CLOUD_TOKEN; // Pinata JWT Token
+const cloudflare_key = process.env.CLOUDFLARE_KEY; // Cloudflare Global API Key
+const cloudflare_email = process.env.CLOUDFLARE_EMAIL; // Cloudflare email for account
+const cloudflare_zone = process.env.CLOUDFLARE_ZONE; // Cloudflare zone. eg. iofq.net
+const cloudflare_record = process.env.CLOUDFLARE_RECORD; // Cloudflare record. likely _dnslink.iofq.net
 
 recursive.readdirr(src, function (err, dirs, files) {
     let data = new FormData();
@@ -52,7 +52,7 @@ recursive.readdirr(src, function (err, dirs, files) {
                 var record_id = response['data']['result'][0]['id']
                 data = {
                     "type" : "TXT",
-                    "name" : "_dnslink",
+                    "name" : cloudflare_record,
                     "ttl" : 1,
                     "content" : "dnslink=/ipfs/" + pinata_hash
                 }
