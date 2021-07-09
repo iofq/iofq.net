@@ -16,13 +16,9 @@ jobs:
       - name: Install dependancies
         run: npm install axios fs form-data recursive-fs base-path-converter
 
-      - name: add source directory to IPFS
+      - name: add source directory to IPFS/Cloudflare
         run: |
-          var=$(docker run --rm -v $(pwd):/src ipfs/go-ipfs add -Qr /src | tail -n 1)
-          echo 'IPFS_HASH=$var)' >> $GITHUB_ENV
-
-      - name: format 
-        run: echo $IPFS_HASH && curl http://cloudflare-ipfs.com/ipfs/${{ env.IPFS_HASH }}
+          sh ./bin/ipfs.sh
 
       # - name: Push src to Pinata and hash to Cloudflare APIs
       #   env:
