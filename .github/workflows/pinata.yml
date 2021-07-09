@@ -17,14 +17,14 @@ jobs:
         run: npm install axios fs form-data recursive-fs base-path-converter
 
       - name: run IPFS
-        run: docker run --rm -it ipfs/goipfs ipfs --version
+        run: docker run --rm ipfs/goipfs ipfs --version
 
-      - name: Push src to Pinata and hash to Cloudflare APIs
-        env:
-          PINATA_CLOUD_TOKEN: ${{ secrets.PINATA_CLOUD_TOKEN }}
-          CLOUDFLARE_KEY: ${{ secrets.CLOUDFLARE_KEY }}
-          CLOUDFLARE_EMAIL: ${{ secrets.CLOUDFLARE_EMAIL }}
-          CLOUDFLARE_ZONE: ${{ secrets.CLOUDFLARE_ZONE }}
-          CLOUDFLARE_RECORD: ${{ secrets.CLOUDFLARE_RECORD }}
-        run: |
-          node pinata.js
+      # - name: Push src to Pinata and hash to Cloudflare APIs
+      #   env:
+      #     PINATA_CLOUD_TOKEN: ${{ secrets.PINATA_CLOUD_TOKEN }}
+      #     CLOUDFLARE_KEY: ${{ secrets.CLOUDFLARE_KEY }}
+      #     CLOUDFLARE_EMAIL: ${{ secrets.CLOUDFLARE_EMAIL }}
+      #     CLOUDFLARE_ZONE: ${{ secrets.CLOUDFLARE_ZONE }}
+      #     CLOUDFLARE_RECORD: ${{ secrets.CLOUDFLARE_RECORD }}
+      #   run: |
+      #     node pinata.js
