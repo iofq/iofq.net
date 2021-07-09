@@ -19,7 +19,7 @@ jobs:
       - name: run IPFS
         run: |
           echo 'IPFS_HASH<<EOF' >> $GITHUB_ENV
-          docker run --rm -v $(pwd):/src ipfs/go-ipfs add -Qr /src >> $GITHUB_ENV
+          docker run --rm -v $(pwd):/src ipfs/go-ipfs add -Qr /src | tail -n 1 >> $GITHUB_ENV
           echo 'EOF' >> $GITHUB_ENV
 
       - name: f
