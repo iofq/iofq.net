@@ -23,7 +23,7 @@ jobs:
           echo 'EOF' >> $GITHUB_ENV
 
       - name: f
-        run: echo "${{ env.IPFS_HASH }}" | tail 1
+        run: echo "${{ env.IPFS_HASH }}" | tail -n 1
 
       # - name: Push src to Pinata and hash to Cloudflare APIs
       #   env:
