@@ -19,11 +19,11 @@ jobs:
       - name: run IPFS
         run: |
           echo 'IPFS_HASH<<EOF' >> $GITHUB_ENV
-          docker run --rm -v $(pwd):/src ipfs/go-ipfs add -Qr /src | tail -n 1 >> $GITHUB_ENV
+          docker run --rm -v $(pwd):/src ipfs/go-ipfs add -Qr /src >> $GITHUB_ENV
           echo 'EOF' >> $GITHUB_ENV
 
       - name: f
-        run: echo "${{ env.IPFS_HASH }}"
+        run: echo "${{ env.IPFS_HASH }}" | tail 1
 
       # - name: Push src to Pinata and hash to Cloudflare APIs
       #   env:
