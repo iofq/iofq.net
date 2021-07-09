@@ -18,7 +18,7 @@ jobs:
 
       - name: add source directory to IPFS
         run: |
-          echo 'IPFS_HASH=$(docker run --rm -v $(pwd):/src ipfs/go-ipfs add -Qr /src | tail -n 1)' >> $GITHUB_ENV
+          echo 'IPFS_HASH=$(docker run --rm -v $(pwd):/src ipfs/go-ipfs add -Qr /src)' | tail -n 1 >> $GITHUB_ENV
 
       - name: format 
         run: echo "${{ env.IPFS_HASH }}"
