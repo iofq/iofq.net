@@ -16,6 +16,9 @@ jobs:
       - name: Install dependancies
         run: npm install axios fs form-data recursive-fs base-path-converter
 
+      - name: run IPFS
+        run: docker run --rm -it ipfs/goipfs ipfs --version
+
       - name: Push src to Pinata and hash to Cloudflare APIs
         env:
           PINATA_CLOUD_TOKEN: ${{ secrets.PINATA_CLOUD_TOKEN }}
