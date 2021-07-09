@@ -19,7 +19,7 @@ jobs:
       - name: run IPFS
         run: ipfs_hash=$(docker run --rm -d -v $(pwd):/src ipfs/go-ipfs add -Qrn /src)
 
-      -name: f
+      - name: f
         run: echo $ipfs_hash
 
       # - name: Push src to Pinata and hash to Cloudflare APIs
