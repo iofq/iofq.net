@@ -25,3 +25,5 @@ jobs:
           CLOUDFLARE_RECORD: ${{ secrets.CLOUDFLARE_RECORD }}
         run: |
           node pinata.js
+          sleep 20
+          curl "https://cloudflare-ipfs.com/ipns/$CLOUDFLARE_ZONE"

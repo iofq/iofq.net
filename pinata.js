@@ -10,8 +10,8 @@ const cloudflare_url = 'https://api.cloudflare.com/client/v4';
 const pinata_token = process.env.PINATA_CLOUD_TOKEN; // Pinata JWT Token
 const cloudflare_key = process.env.CLOUDFLARE_KEY; // Cloudflare Global API Key
 const cloudflare_email = process.env.CLOUDFLARE_EMAIL; // Cloudflare email for account
-const cloudflare_zone = process.env.CLOUDFLARE_ZONE; // Cloudflare zone. eg. iofq.net
-const cloudflare_record = process.env.CLOUDFLARE_RECORD; // Cloudflare record. likely _dnslink.iofq.net
+const cloudflare_zone = process.env.CLOUDFLARE_ZONE; // Cloudflare zone. eg. 10110110.xyz
+const cloudflare_record = process.env.CLOUDFLARE_RECORD; // Cloudflare record. likely _dnslink.10110110.xyz
 
 recursive.readdirr(src, function (err, dirs, files) {
     let data = new FormData();
@@ -22,7 +22,7 @@ recursive.readdirr(src, function (err, dirs, files) {
     });
 
     data.append('pinataMetadata',JSON.stringify({
-            name: 'iofq.net',
+            name: cloudflare_zone,
             keyvalues: {
                 date: Date.now()
             }
